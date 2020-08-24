@@ -215,9 +215,33 @@ const controller = () => {
        UICtrl.restartPanels();
    }
    const begin = () => {
+      const initHTML = () =>{
+         const initFlechas = (nro) => {
+            let initFlechas = `<div class="player-name" id="name-${nro}">Player ${nro + 1} </div>`;
+            for (let i = 0; i < 11; i++) {
+               initFlechas += `<button class="options" id="p${nro}-options-${i}"><img class="flecha" src="img/flecha.png" alt=""></button>`
+            }
+            return initFlechas;
+         }
+         const initButCheImg = () => {
+            let butCheImg = '';
+            butCheImg += `<button class="btn-new"><i class="ion-ios-plus-outline"></i>New game</button>`
+            butCheImg += `<button class="btn-roll"><i class="ion-ios-loop"></i>Roll dice</button>`
+            butCheImg += `<button class="btn-hold"><i class="ion-ios-download-outline"></i>Hold</button>`
+            for (let i = 0; i < 5; i++) {
+               butCheImg += `<input type = "checkbox" id = "check-${i}" value = "on" name = "dados">`
+               butCheImg += `<img src = "img/dice-5.png" alt = "Dice" class="dice" id = "dice-${i}">`
+            }
+            return butCheImg;
+         }
+         document.getElementById('player-0-panel').innerHTML = initFlechas(0);
+         document.getElementById('player-1-panel').innerHTML = initFlechas(1);
+         document.getElementById('button-check-image').innerHTML = initButCheImg();
+      }
       cubi = new Cubilete();
       gDices = new GameDice();
       table = new TableOfPoints();
+      initHTML();
       init();
       setupEventListeners();
       
