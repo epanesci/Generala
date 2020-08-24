@@ -14,29 +14,26 @@ const UIController = () => {
          document.getElementById(`check-${position}`).style.display = `block`;
       },
       initTable: () => {
-       
-         const initTablaNombres = (nro) => {
-            for (let i = 0; i < 6; i++) {
-               document.getElementById(`table${nro}-${i}`).textContent = `0${i + 1} ----------------- `;
-            }
-            document.getElementById(`table${nro}-6`).textContent = 'ESCALERA ------- ';
-            document.getElementById(`table${nro}-7`).textContent = 'FULL -------------- ';
-            document.getElementById(`table${nro}-8`).textContent = 'POQUER --------- ';
-            document.getElementById(`table${nro}-9`).textContent = 'GENERALA ------ ';
-            document.getElementById(`table${nro}-10`).textContent = 'GENERALAX2 --- ';
-         }
+         
          const initTablaPuntajes = (nro) => {
             let tablaPuntajes = '';
-            for (let i = 0; i < 11; i++) {
-               tablaPuntajes += `<li class="rowtable" id="table${nro}-${i}"></li>`
+            for (let i = 0; i < 6; i++) {
+               tablaPuntajes += `<li class="rowtable" id="table${nro}-${i}">0${ i + 1 } ----------------- </li>`
+               
             }
+            tablaPuntajes += `<li class="rowtable" id="table${nro}-6">ESCALERA ------- </li>`
+            tablaPuntajes += `<li class="rowtable" id="table${nro}-7">FULL --------------  </li>`
+            tablaPuntajes += `<li class="rowtable" id="table${nro}-8">POQUER --------- </li>`
+            tablaPuntajes += `<li class="rowtable" id="table${nro}-9">GENERALA ------ </li>`
+            tablaPuntajes += `<li class="rowtable" id="table${nro}-10">GENERALAX2 --- </li>`
+          
             return tablaPuntajes;
-         };
+         }
+         
          
          document.getElementById(`table-points-0`).innerHTML = initTablaPuntajes(0);
          document.getElementById(`table-points-1`).innerHTML = initTablaPuntajes(1);
-         initTablaNombres(0);
-         initTablaNombres(1);
+        
       },
       displayNoneOptions: () => {
          let listOptions =  document.querySelectorAll('.options');
@@ -68,7 +65,7 @@ const UIController = () => {
    }
 }
 const controller = () => {
-   let cubi, table;
+   let cubi, table, gDices;
    const UICtrl = UIController();
    class Dice {
       constructor (){
