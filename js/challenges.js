@@ -14,22 +14,29 @@ const UIController = () => {
          document.getElementById(`check-${position}`).style.display = `block`;
       },
       initTable: () => {
-         for (let i = 0; i < 7; i++) {
-            document.getElementById(`table0-${i}`).textContent = `0${i+1} ----------------- `; 
+       
+         const initTablaNombres = (nro) => {
+            for (let i = 0; i < 6; i++) {
+               document.getElementById(`table${nro}-${i}`).textContent = `0${i + 1} ----------------- `;
+            }
+            document.getElementById(`table${nro}-6`).textContent = 'ESCALERA ------- ';
+            document.getElementById(`table${nro}-7`).textContent = 'FULL -------------- ';
+            document.getElementById(`table${nro}-8`).textContent = 'POQUER --------- ';
+            document.getElementById(`table${nro}-9`).textContent = 'GENERALA ------ ';
+            document.getElementById(`table${nro}-10`).textContent = 'GENERALAX2 --- ';
          }
-         document.getElementById('table0-6').textContent ='ESCALERA ------- ';
-         document.getElementById('table0-7').textContent ='FULL -------------- ';
-         document.getElementById('table0-8').textContent ='POQUER --------- ';
-         document.getElementById('table0-9').textContent ='GENERALA ------ ';
-         document.getElementById('table0-10').textContent ='GENERALAX2 --- ';
-         for (let i = 0; i < 7; i++) {
-            document.getElementById(`table1-${i}`).textContent = `0${i + 1} ----------------- `;
-         }
-         document.getElementById('table1-6').textContent ='ESCALERA ------- ';
-         document.getElementById('table1-7').textContent ='FULL -------------- ';
-         document.getElementById('table1-8').textContent ='POQUER --------- ';
-         document.getElementById('table1-9').textContent ='GENERALA ------ ';
-         document.getElementById('table1-10').textContent ='GENERALAX2 --- ';
+         const initTablaPuntajes = (nro) => {
+            let tablaPuntajes = '';
+            for (let i = 0; i < 11; i++) {
+               tablaPuntajes += `<li class="rowtable" id="table${nro}-${i}"></li>`
+            }
+            return tablaPuntajes;
+         };
+         
+         document.getElementById(`table-points-0`).innerHTML = initTablaPuntajes(0);
+         document.getElementById(`table-points-1`).innerHTML = initTablaPuntajes(1);
+         initTablaNombres(0);
+         initTablaNombres(1);
       },
       displayNoneOptions: () => {
          let listOptions =  document.querySelectorAll('.options');
@@ -214,8 +221,9 @@ const controller = () => {
       cubi = new Cubilete();
       gDices = new GameDice();
       table = new TableOfPoints();
-      setupEventListeners();
       init();
+      setupEventListeners();
+      
    }
    const nextPlayer = () => {
        //Next player
@@ -243,7 +251,7 @@ const controller = () => {
       let options = document.querySelectorAll('.options');
       for (let j = 0; j < 22; j++) {
          options[j].addEventListener('click', () => {
-            console.log(j);
+           
             let t,i;
             if (j < 11) { i = j; t = 0;}
             else {i = j-11; t = 1;
