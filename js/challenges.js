@@ -9,7 +9,7 @@ const UIController = () => {
       },
       mostrarDado: (dice,position) => {
          let diceDOM = document.getElementById(`dice-${position}`);
-         diceDOM.src = `dice-${dice}.png`;
+         diceDOM.src = `img/dice-${dice}.png`;
          diceDOM.style.display = `block`;
          document.getElementById(`check-${position}`).style.display = `block`;
       },
