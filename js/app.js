@@ -104,7 +104,7 @@ const controller = () => {
        }
        else { table.whoWin(); init()}
    }
-   const endGame = () => { table.whoWin(); init() }
+   const endGame = () => { table.repair(0); table.repair(1); table.whoWin(); init() }
    let setupEventListeners = () => {
       document.querySelector('.btn-end').addEventListener('click', endGame);
       document.querySelector('.btn-hold').addEventListener('click', hold);//Boton Hold

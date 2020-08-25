@@ -52,7 +52,7 @@ export class GameDice {
 export class TableOfPoints {
    constructor() { this.initTable() }
    initTable() {
-      this.table = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ]]
+      this.table = [[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 ]]
       this.activePlayer = 0; this.cantJugadas = 0;
    }
    contarJugada() { this.cantJugadas++ }
@@ -62,6 +62,11 @@ export class TableOfPoints {
       return a + b;
    
    })}
+   repair(nro) {
+      for (let i = 0; i < 11; i++) {
+         if(this.table[nro][i] === -1) { this.table[nro][i] = 0 }  
+      }
+   }
    whoWin() {
       let x1 = this.totalTable(0); let x2 = this.totalTable(1);
       if (x1 > x2) { alert(`el ganador es player 1 con puntos: ${x1}`) }
@@ -72,5 +77,5 @@ export class TableOfPoints {
    getActivePlayer() { return this.activePlayer }
    getElement(i) { return this.table[this.activePlayer][i] }
    setElement(i, element) { this.table[this.activePlayer][i] = element }
-   estaVacio(i) { return this.table[this.activePlayer][i] === 0 }
+   estaVacio(i) { return this.table[this.activePlayer][i] === -1 }
 }
