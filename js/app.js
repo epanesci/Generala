@@ -14,18 +14,16 @@ const UIController = () => {
          document.getElementById(`check-${position}`).style.display = `block`;
       },
       initTable: () => {
-         
          const initTablaPuntajes = (nro) => {
             let tablaPuntajes = '';
             for (let i = 0; i < 6; i++) {
                tablaPuntajes += `<li class="rowtable" id="table${nro}-${i}">0${ i + 1 } ----------------- </li>`
-               
             }
             tablaPuntajes += `<li class="rowtable" id="table${nro}-6">ESCALERA ------- </li>`
-            tablaPuntajes += `<li class="rowtable" id="table${nro}-7">FULL --------------  </li>`
-            tablaPuntajes += `<li class="rowtable" id="table${nro}-8">POQUER --------- </li>`
-            tablaPuntajes += `<li class="rowtable" id="table${nro}-9">GENERALA ------ </li>`
-            tablaPuntajes += `<li class="rowtable" id="table${nro}-10">GENERALAX2 --- </li>`
+            + `<li class="rowtable" id="table${nro}-7">FULL --------------  </li>`
+            + `<li class="rowtable" id="table${nro}-8">POQUER --------- </li>`
+            + `<li class="rowtable" id="table${nro}-9">GENERALA ------ </li>`
+            + `<li class="rowtable" id="table${nro}-10">GENERALAX2 --- </li>`
           
             return tablaPuntajes;
          }
@@ -35,17 +33,13 @@ const UIController = () => {
       },
       displayNoneOptions: () => {
          let listOptions =  document.querySelectorAll('.options');
-         for (let i = 0; i < listOptions.length; i++) {
-            listOptions[i].style.display = 'none';
-         }
+         for (let i = 0; i < listOptions.length; i++) { listOptions[i].style.display = 'none' }
       },
       displayOnOption: (activePlayer,i) => {
          document.getElementById(`p${activePlayer}-options-${i}`).style.display = 'block';
       },
       checkboxCheck: (onOrOff) => {
-         for (let i = 0; i < 5; i++) {
-            document.getElementById(`check-${i}`).checked = onOrOff;
-         }
+         for (let i = 0; i < 5; i++) { document.getElementById(`check-${i}`).checked = onOrOff }
       },
       restartPanels: () => {
          document.querySelector('.player-0-panel').classList.remove('active');
@@ -59,26 +53,18 @@ const UIController = () => {
       displayButtons: (onOrOff) => {
          document.querySelector('.btn-roll').style.display = onOrOff;
          document.querySelector('.btn-hold').style.display = onOrOff;
-      },
+      }
    }
 }
 const controller = () => {
    let cubi, table, gDices;
    const UICtrl = UIController();
-   
-
    const init = () => {
-      cubi.initCubilete();
-      gDices.initGameDices();
-      table.initTable();
+      cubi.initCubilete(); gDices.initGameDices(); table.initTable();
        //Inicializar todos los objetos
-       UICtrl.initTable();
-       UICtrl.desaparecerDados();
-       UICtrl.displayNoneOptions();
+       UICtrl.initTable(); UICtrl.desaparecerDados(); UICtrl.displayNoneOptions();
        //checkear dados
-       UICtrl.checkboxCheck(true);
-       UICtrl.displayButtons('block');
-       UICtrl.restartPanels();
+       UICtrl.checkboxCheck(true); UICtrl.displayButtons('block'); UICtrl.restartPanels();
    }
    const begin = () => {
       const initHTML = () =>{
@@ -92,11 +78,12 @@ const controller = () => {
          const initButCheImg = () => {
             let butCheImg = '';
             butCheImg += `<button class="btn-new"><i class="ion-ios-plus-outline"></i>New game</button>`
-            butCheImg += `<button class="btn-roll"><i class="ion-ios-loop"></i>Roll dice</button>`
-            butCheImg += `<button class="btn-hold"><i class="ion-ios-download-outline"></i>Hold</button>`
+            + `<button class="btn-roll"><i class="ion-ios-loop"></i>Roll dice</button>`
+            + `<button class="btn-hold"><i class="ion-ios-download-outline"></i>Hold</button>`
+            + `<button class="btn-end"><i class="ion-ios-download-outline"></i>END</button>`
             for (let i = 0; i < 5; i++) {
                butCheImg += `<input type = "checkbox" id = "check-${i}" value = "on" name = "dados">`
-               butCheImg += `<img src = "img/dice-5.png" alt = "Dice" class="dice" id = "dice-${i}">`
+               + `<img src = "img/dice-5.png" alt = "Dice" class="dice" id = "dice-${i}">`
             }
             return butCheImg;
          }
@@ -104,41 +91,28 @@ const controller = () => {
          document.getElementById('player-1-panel').innerHTML = initFlechas(1);
          document.getElementById('button-check-image').innerHTML = initButCheImg();
       }
-      cubi = new Cubilete();
-      gDices = new GameDice();
-      table = new TableOfPoints();
-      initHTML();
-      init();
-      setupEventListeners();
-      
+      cubi = new Cubilete(); gDices = new GameDice(); table = new TableOfPoints();
+      initHTML();  init();  setupEventListeners();
    }
    const nextPlayer = () => {
-       //Next player
        if (!table.isFinish()) {
-         cubi.initCubilete();
-         gDices.initGameDices();
-         UICtrl.displayNoneOptions();
-         UICtrl.desaparecerDados();
+         cubi.initCubilete(); gDices.initGameDices();
+         UICtrl.displayNoneOptions(); UICtrl.desaparecerDados();
          //checkeando dados
-         UICtrl.checkboxCheck(true);
-         UICtrl.togglePanels();
-         UICtrl.displayButtons('block');
-         table.changeActivePlayer();
+         UICtrl.checkboxCheck(true); UICtrl.togglePanels();
+         UICtrl.displayButtons('block'); table.changeActivePlayer();
        }
-       else {
-         table.whoWin();
-         init();
-      }
+       else { table.whoWin(); init()}
    }
-
+   const endGame = () => { table.whoWin(); init() }
    let setupEventListeners = () => {
+      document.querySelector('.btn-end').addEventListener('click', endGame);
       document.querySelector('.btn-hold').addEventListener('click', hold);//Boton Hold
       document.querySelector('.btn-new').addEventListener('click', init);//Boton New Game
       document.querySelector('.btn-roll').addEventListener('click', roll);//Boton Roll
       let options = document.querySelectorAll('.options');
       for (let j = 0; j < 22; j++) {
          options[j].addEventListener('click', () => {
-           
             let t,i;
             if (j < 11) { i = j; t = 0;}
             else {i = j-11; t = 1;
@@ -176,10 +150,8 @@ const controller = () => {
          }
          else {
             UICtrl.displayButtons('none');//saco el boton roll y hold
-            for (let i = 0; i < 11; i++) {
-               if (table.estaVacio(i)) {
-                  UICtrl.displayOnOption(table.getActivePlayer(),i);//muestro botones para elegir jugada
-               }
+            for (let i = 0; i < 11; i++) {//muestro botones para elegir jugada
+               if (table.estaVacio(i)) { UICtrl.displayOnOption(table.getActivePlayer(),i) }
             }
             table.contarJugada();
          }
@@ -195,19 +167,13 @@ const controller = () => {
          cubi.setServido(true);
          for (let i = 0; i < cubi.getLength(); i++) {
             if (checkArray[i]){
-               cubi.rollDice(i);
-               UICtrl.mostrarDado(cubi.getElement(i).getValue() , i);
+               cubi.rollDice(i); UICtrl.mostrarDado(cubi.getElement(i).getValue() , i);
             }
-            else {
-               cubi.setServido(false);
-            }
+            else { cubi.setServido(false) }
          }
-         cubi.contarTiro();
-         UICtrl.checkboxCheck(false);
+         cubi.contarTiro(); UICtrl.checkboxCheck(false);
       }
-      if (cubi.esUltimoTiro()) {
-         hold();
-      }
+      if (cubi.esUltimoTiro()) { hold()}
    }
 
    return {iniciar: () => begin()}
