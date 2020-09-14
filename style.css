@@ -218,6 +218,7 @@ i {
 .btn-new { top: 45px;}
 .btn-roll { top: 500px;}
 .btn-hold { top: 550px;}
+.btn-end { top: 10px;}
 
 .dice {
     position: absolute;
