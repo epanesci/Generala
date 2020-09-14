@@ -77,10 +77,10 @@ const controller = () => {
          }
          const initButCheImg = () => {
             let butCheImg = '';
-            butCheImg += `<button class="btn-new"><i class="ion-ios-plus-outline"></i>New game</button>`
-            + `<button class="btn-roll"><i class="ion-ios-loop"></i>Roll dice</button>`
-            + `<button class="btn-hold"><i class="ion-ios-download-outline"></i>Hold</button>`
-            + `<button class="btn-end"><i class="ion-ios-download-outline"></i>END</button>`
+            butCheImg += `<button class="btn-new"><i class="fas fa-sync fa-sm"></i>New game</button>`
+               + `<button class="btn-roll"><i class="fas fa-redo fa-sm"></i>Roll dice</button>`
+               + `<button class="btn-hold"><i class="fas fa-arrow-circle-down fa-sm"></i>Hold</button>`
+               + `<button class="btn-end"><i class="far fa-window-close fa-sm"></i>END</button>`
             for (let i = 0; i < 5; i++) {
                butCheImg += `<input type = "checkbox" id = "check-${i}" value = "on" name = "dados">`
                + `<img src = "img/dice-5.png" alt = "Dice" class="dice" id = "dice-${i}">`

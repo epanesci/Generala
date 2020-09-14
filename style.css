@@ -194,6 +194,7 @@ button {
     cursor: pointer;
     font-weight: 300;
     transition: background-color 0.3s, color 0.3s;
+    
 }
 
 button:hover { font-weight: 600; }
@@ -209,7 +210,7 @@ i {
     margin-right: 15px;
     font-size: 32px;
     line-height: 1;
-    vertical-align: text-top;
+    vertical-align: text-center;
     margin-top: -4px;
     transition: margin 0.3s;
 }
